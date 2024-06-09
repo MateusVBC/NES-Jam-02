@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy0x7sblihosr"]
+[gd_scene load_steps=7 format=3 uid="uid://cy0x7sblihosr"]
 
-[ext_resource type="PackedScene" uid="uid://dglqe06b31g4j" path="res://scenes/game/player.tscn" id="1_v6h00"]
+[ext_resource type="PackedScene" uid="uid://kp8e6a1ejlmy" path="res://scenes/entity/power_up.tscn" id="1_6ncmw"]
+[ext_resource type="PackedScene" uid="uid://dglqe06b31g4j" path="res://scenes/entity/player.tscn" id="1_v6h00"]
 [ext_resource type="Texture2D" uid="uid://bix3idt8npenm" path="res://assets/tiles.png" id="2_pipt6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qh07c"]
@@ -140,6 +141,9 @@ sources/0 = SubResource("TileSetAtlasSource_qh07c")
 
 [node name="Game" type="Node2D"]
 
+[node name="Leaf" parent="." instance=ExtResource("1_6ncmw")]
+position = Vector2(50, -6)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hn2pm")
 format = 2
@@ -147,11 +151,14 @@ layer_0/name = "Midground"
 layer_0/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 65531, 0, 0, 65530, 0, 0, 65529, 0, 0, 65528, 0, 0, -3, 0, 0, -4, 0, 0, -5, 0, 0, -6, 0, 0, -7, 0, 0, -65543, 0, 0, -8, 0, 0, -65544, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_v6h00")]
-position = Vector2(0, -45)
+position = Vector2(2, -47)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_top = -300
+limit_bottom = 100
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-72, 170)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_8c5f3")

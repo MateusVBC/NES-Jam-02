@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dglqe06b31g4j"]
+
+[ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
+[ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/player/player.png" id="2_66pu1"]
+[ext_resource type="Script" path="res://scripts/entity/upgrade_manager.gd" id="3_1pgcn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkuhb"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kqxh"]
+size = Vector2(14, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4806"]
+size = Vector2(14, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhowt"]
+size = Vector2(14, 1.99997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqvu5"]
+size = Vector2(14, 2.00003)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_r7ntd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wkuhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_66pu1")
+
+[node name="PowerUp Manager" type="Node2D" parent="."]
+script = ExtResource("3_1pgcn")
+
+[node name="SpriteUp" type="Sprite2D" parent="PowerUp Manager"]
+
+[node name="SpriteDown" type="Sprite2D" parent="PowerUp Manager"]
+rotation = -3.14159
+
+[node name="SpriteRight" type="Sprite2D" parent="PowerUp Manager"]
+rotation = 1.57079
+
+[node name="SpriteLeft" type="Sprite2D" parent="PowerUp Manager"]
+rotation = -1.5708
+
+[node name="Up" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp Manager/Up"]
+shape = SubResource("RectangleShape2D_5kqxh")
+
+[node name="Down" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+position = Vector2(0, 8)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp Manager/Down"]
+shape = SubResource("RectangleShape2D_n4806")
+
+[node name="Right" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+position = Vector2(8, 0)
+rotation = 1.57079
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp Manager/Right"]
+shape = SubResource("RectangleShape2D_mhowt")
+
+[node name="Left" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+position = Vector2(-8, 0)
+rotation = 1.57079
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp Manager/Left"]
+shape = SubResource("RectangleShape2D_cqvu5")
+
+[connection signal="area_entered" from="PowerUp Manager/Up" to="PowerUp Manager" method="_on_up_area_entered"]
+[connection signal="area_exited" from="PowerUp Manager/Up" to="PowerUp Manager" method="_on_up_area_exited"]
+[connection signal="area_entered" from="PowerUp Manager/Down" to="PowerUp Manager" method="_on_down_area_entered"]
+[connection signal="area_exited" from="PowerUp Manager/Down" to="PowerUp Manager" method="_on_down_area_exited"]
+[connection signal="area_entered" from="PowerUp Manager/Right" to="PowerUp Manager" method="_on_right_area_entered"]
+[connection signal="area_exited" from="PowerUp Manager/Right" to="PowerUp Manager" method="_on_right_area_exited"]
+[connection signal="area_entered" from="PowerUp Manager/Left" to="PowerUp Manager" method="_on_left_area_entered"]
+[connection signal="area_exited" from="PowerUp Manager/Left" to="PowerUp Manager" method="_on_left_area_exited"]
