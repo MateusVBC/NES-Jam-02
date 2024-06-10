@@ -1,0 +1,2 @@
+extends Node
+enum POWER_UPS {LEAF, CLOUD, METAL, SPIKES, SLIME, ICE, FIRE}

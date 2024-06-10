@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cy0x7sblihosr"]
 
+[ext_resource type="PackedScene" uid="uid://kp8e6a1ejlmy" path="res://scenes/entity/power_up.tscn" id="1_6ncmw"]
 [ext_resource type="PackedScene" uid="uid://dglqe06b31g4j" path="res://scenes/entity/player.tscn" id="1_v6h00"]
 [ext_resource type="Texture2D" uid="uid://bix3idt8npenm" path="res://assets/world/tiles.png" id="2_cing6"]
-[ext_resource type="PackedScene" uid="uid://bbj0t6omonxsw" path="res://scenes/entity/power_ups/power_up_leaf.tscn" id="3_u0h2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qh07c"]
 texture = ExtResource("2_cing6")
@@ -141,6 +141,9 @@ sources/0 = SubResource("TileSetAtlasSource_qh07c")
 
 [node name="Game" type="Node2D"]
 
+[node name="Leaf" parent="." instance=ExtResource("1_6ncmw")]
+position = Vector2(50, -6)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hn2pm")
 format = 2
@@ -153,8 +156,6 @@ position = Vector2(2, -47)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_top = -300
 limit_bottom = 100
-
-[node name="Leaf" parent="." instance=ExtResource("3_u0h2x")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-72, 170)
