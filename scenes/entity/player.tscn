@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dglqe06b31g4j"]
+[gd_scene load_steps=14 format=3 uid="uid://dglqe06b31g4j"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
 [ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/player/player.png" id="2_66pu1"]
 [ext_resource type="Script" path="res://scripts/entity/upgrade_manager.gd" id="3_1pgcn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkuhb"]
-size = Vector2(16, 16)
+[ext_resource type="Script" path="res://scripts/entity/player/damage_manager.gd" id="4_rh6fi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kqxh"]
 size = Vector2(14, 2)
@@ -19,11 +17,24 @@ size = Vector2(14, 1.99997)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqvu5"]
 size = Vector2(14, 2.00003)
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_r7ntd")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4of66"]
+size = Vector2(0, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wkuhb")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u70kp"]
+size = Vector2(0, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3h2h"]
+size = Vector2(16, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhv1m"]
+size = Vector2(16, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oj7iv"]
+radius = 2.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_r7ntd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_66pu1")
@@ -76,6 +87,59 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp Manager/Left"]
 shape = SubResource("RectangleShape2D_cqvu5")
 
+[node name="Damage Manager" type="Node2D" parent="."]
+script = ExtResource("4_rh6fi")
+
+[node name="LeftDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/LeftDamageArea"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_4of66")
+
+[node name="RightDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_u70kp")
+
+[node name="TopDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/TopDamageArea"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_w3h2h")
+
+[node name="BottomDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/BottomDamageArea"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_dhv1m")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CornerCollision1" type="CollisionShape2D" parent="."]
+position = Vector2(6, 6)
+shape = SubResource("CircleShape2D_oj7iv")
+
+[node name="CornerCollision2" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -6)
+shape = SubResource("CircleShape2D_oj7iv")
+
+[node name="CornerCollision3" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 6)
+shape = SubResource("CircleShape2D_oj7iv")
+
+[node name="CornerCollision4" type="CollisionShape2D" parent="."]
+position = Vector2(6, -6)
+shape = SubResource("CircleShape2D_oj7iv")
+
 [connection signal="area_entered" from="PowerUp Manager/Up" to="PowerUp Manager" method="_on_up_area_entered"]
 [connection signal="area_exited" from="PowerUp Manager/Up" to="PowerUp Manager" method="_on_up_area_exited"]
 [connection signal="area_entered" from="PowerUp Manager/Down" to="PowerUp Manager" method="_on_down_area_entered"]
@@ -84,3 +148,8 @@ shape = SubResource("RectangleShape2D_cqvu5")
 [connection signal="area_exited" from="PowerUp Manager/Right" to="PowerUp Manager" method="_on_right_area_exited"]
 [connection signal="area_entered" from="PowerUp Manager/Left" to="PowerUp Manager" method="_on_left_area_entered"]
 [connection signal="area_exited" from="PowerUp Manager/Left" to="PowerUp Manager" method="_on_left_area_exited"]
+[connection signal="area_entered" from="Damage Manager/LeftDamageArea" to="Damage Manager" method="_on_left_damage_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/RightDamageArea" to="Damage Manager" method="_on_right_damage_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/TopDamageArea" to="Damage Manager" method="_on_top_damage_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/BottomDamageArea" to="Damage Manager" method="_on_bottom_damage_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_coyote_timeout"]
