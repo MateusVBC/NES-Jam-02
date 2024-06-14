@@ -4,7 +4,7 @@ class_name Player
 enum SIDES {UP, RIGHT, DOWN, LEFT};
 enum DIRECTIONS {TOP, FRONT, BOTTOM, BACk};
 
-const SPEED = 150.0;
+const SPEED = 150.0;#150
 const JUMP_VELOCITY = -300.0;
 const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS;
 
@@ -13,6 +13,7 @@ const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS;
 @export var power_ups := {SIDES.UP: false, SIDES.DOWN: false, SIDES.RIGHT: false, SIDES.LEFT: false};
 var current_directions := {DIRECTIONS.TOP: SIDES.UP, DIRECTIONS.BOTTOM: SIDES.DOWN, DIRECTIONS.FRONT: SIDES.RIGHT, DIRECTIONS.BACk: SIDES.LEFT};
 var health_sides := {SIDES.UP: 0, SIDES.DOWN: 0, SIDES.RIGHT: 0, SIDES.LEFT: 0};
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var leaf_gravity = gravity / 6; #gravity / 4.5;
 
@@ -71,8 +72,7 @@ func _process(_delta):
 		for side in touching_sides:
 			if typeof(touching_sides[side]) == TYPE_INT:
 				power_ups[side] = touching_sides[side];
-			if typeof(power_ups[side]) == TYPE_INT:
-				powerUpManager.set_sprite_from_power_up(side, power_ups[side])
+				powerUpManager.set_power_up(side, power_ups[side], health_sides)
 
 func is_element_on_current_side(power_up, side):
 	var side_tracking = tracking_rotation;
@@ -87,17 +87,39 @@ func is_element_on_current_side(power_up, side):
 				#faço ficar dentro do array de lados
 				if element > 3:
 					element -= 4;
-				if element == side:
-					return true;
+				return element == side;
 	return false;
+	
+func is_side_on_current_direction(side, direction):
+	var side_tracking = tracking_rotation;
+	#não lida com negativos
+	if tracking_rotation < 0:
+		side_tracking += 4;
+	side += side_tracking;
+	if side > 3:
+		side -= 4;
+	return direction == side;
 
 func take_damage(side):
 	health_sides[side] -= 1;
+	$AnimationPlayer.play("take_damage");
 	if health_sides[side] < 0:
 		die();
 
 func die():
-	pass
+	Engine.time_scale = 0.3;
+	velocity.y = JUMP_VELOCITY;
+	$CornerCollision1.queue_free()
+	$CornerCollision2.queue_free()
+	$CornerCollision3.queue_free()
+	$CornerCollision4.queue_free()
+	$"Damage Manager".queue_free()
+	get_tree().create_tween().tween_property(self, "rotation", 360, 10);
+	await get_tree().create_timer(0.5).timeout
+	Engine.time_scale = 1;
+	print("Tela de game over");
+	
+	#get_tree().reload_current_scene();
 
 func _rotate_player_90_degrees(delta):
 	target_rotation = fmod(target_rotation, (2 * PI))
