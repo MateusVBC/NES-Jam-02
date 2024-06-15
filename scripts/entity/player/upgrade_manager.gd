@@ -3,15 +3,6 @@ class_name PowerUpManager
 
 const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS;
 const SIDES = preload("res://scripts/entity/player.gd").SIDES;
-const SPRITES := {
-	POWER_UPS.LEAF: preload("res://assets/player/leaf_upgrade.png"),
-	POWER_UPS.CLOUD: preload("res://assets/player/cloud_upgrade.png"),
-	POWER_UPS.METAL: preload("res://assets/player/metal_up.png"),
-	POWER_UPS.SPIKES: preload("res://assets/player/spike_upgrade.png"),
-	POWER_UPS.SLIME: preload("res://assets/player/slime_upgrade.png"),
-	POWER_UPS.ICE: preload("res://assets/player/ice_upgrade.png"),
-	POWER_UPS.FIRE: preload("res://assets/player/fire_upgrade.png")
-}
 const SPIKE_HEALTH = 1;
 const METAL_HEALTH = 2;
 @export var collidingSides := {SIDES.UP: false, SIDES.DOWN: false, SIDES.RIGHT: false, SIDES.LEFT: false};;
@@ -29,17 +20,13 @@ const METAL_HEALTH = 2;
 func get_touching_sides():
 	return collidingSides;
 	
-func set_sprite_from_power_up(side, power_up: int, health):
-	match power_up:
-				POWER_UPS.LEAF:
-					set_sprite_from_side(side, SPRITES[POWER_UPS.LEAF]);
-				POWER_UPS.ICE:
-					set_sprite_from_side(side, SPRITES[POWER_UPS.ICE]);
+func set_power_up(side, power_up: PowerUp, player: Player):
+	set_sprite_from_side(side, power_up.sprite);
+	match power_up.type:
 				POWER_UPS.METAL:
-					health[side] = METAL_HEALTH;
-					set_sprite_from_side(side, SPRITES[POWER_UPS.METAL]);
+					player.health_sides[side] = METAL_HEALTH;
 				POWER_UPS.SPIKES:
-					health[side] = SPIKE_HEALTH;
+					player.health_sides[side] = SPIKE_HEALTH;
 
 func set_sprite_from_side(side, sprite):
 	match side:

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal player_death;
+
 enum SIDES {UP, RIGHT, DOWN, LEFT};
 enum DIRECTIONS {TOP, FRONT, BOTTOM, BACk};
 
@@ -10,9 +12,12 @@ const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS;
 
 @onready var coyote_timer = $Timer
 @onready var powerUpManager = $"PowerUp Manager"
+
 @export var power_ups := {SIDES.UP: false, SIDES.DOWN: false, SIDES.RIGHT: false, SIDES.LEFT: false};
 var current_directions := {DIRECTIONS.TOP: SIDES.UP, DIRECTIONS.BOTTOM: SIDES.DOWN, DIRECTIONS.FRONT: SIDES.RIGHT, DIRECTIONS.BACk: SIDES.LEFT};
 var health_sides := {SIDES.UP: 0, SIDES.DOWN: 0, SIDES.RIGHT: 0, SIDES.LEFT: 0};
+
+var current_speed = SPEED;
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var leaf_gravity = gravity / 6; #gravity / 4.5;
@@ -41,6 +46,8 @@ func _physics_process(delta):
 			rotation_elapsed = 0;
 			initial_rotation = rotation;
 			target_rotation += axis * deg_to_rad(90);
+			if is_element_on_current_side(POWER_UPS.ICE, DIRECTIONS.BOTTOM): #TODO: se tem elemento gelo e se gelo ta em baixo (ver como volta ao normal)
+				current_speed /= 100;
 		
 		if(is_element_on_current_side(powerUpManager.POWER_UPS.LEAF, DIRECTIONS.TOP)
 		&& velocity.y > 0 && Input.is_action_pressed("ui_up")):
@@ -62,7 +69,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED) #velocity.x = move_toward(velocity.x, 0, SPEED/100)
+		velocity.x = move_toward(velocity.x, 0, current_speed)
 
 	move_and_slide()
 	
@@ -70,9 +77,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_down"):
 		var touching_sides = powerUpManager.get_touching_sides();
 		for side in touching_sides:
-			if typeof(touching_sides[side]) == TYPE_INT:
+			if touching_sides[side] is PowerUp:
 				power_ups[side] = touching_sides[side];
-				powerUpManager.set_power_up(side, power_ups[side], health_sides)
+				powerUpManager.set_power_up(side, power_ups[side], self)
 
 func is_element_on_current_side(power_up, side):
 	var side_tracking = tracking_rotation;
@@ -80,8 +87,8 @@ func is_element_on_current_side(power_up, side):
 	if tracking_rotation < 0:
 		side_tracking += 4;
 	for element in power_ups:
-		if typeof(power_ups[element]) == TYPE_INT:
-			if power_ups[element] == power_up:
+		if power_ups[element] is PowerUp:
+			if power_ups[element].type == power_up:
 				#digo qual a "real" posicao do elemento
 				element += side_tracking;
 				#faço ficar dentro do array de lados
@@ -117,9 +124,8 @@ func die():
 	get_tree().create_tween().tween_property(self, "rotation", 360, 10);
 	await get_tree().create_timer(0.5).timeout
 	Engine.time_scale = 1;
-	print("Tela de game over");
-	
-	#get_tree().reload_current_scene();
+	emit_signal("player_death");
+	current_speed = 0.0;
 
 func _rotate_player_90_degrees(delta):
 	target_rotation = fmod(target_rotation, (2 * PI))
