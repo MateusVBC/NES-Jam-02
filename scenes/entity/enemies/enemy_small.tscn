@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnunbtid6peeg"]
+[gd_scene load_steps=7 format=3 uid="uid://dnunbtid6peeg"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/small_enemy.gd" id="1_nmw0c"]
 [ext_resource type="Texture2D" uid="uid://ixupukrq524y" path="res://assets/yellow16x16.png" id="2_f1o2g"]
@@ -10,8 +10,15 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2piql"]
 size = Vector2(1, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km7qs"]
+size = Vector2(16, 16)
+
 [node name="SmallEnemy" type="RigidBody2D"]
 script = ExtResource("1_nmw0c")
+
+[node name="EnemyComponent" type="Node2D" parent="."]
+script = ExtResource("3_ikbea")
+SPEED = Vector2(50, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_f1o2g")
@@ -32,6 +39,11 @@ shape = SubResource("CircleShape2D_61n70")
 position = Vector2(6, -6)
 shape = SubResource("CircleShape2D_61n70")
 
+[node name="FlatCollision4" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_2piql")
+
 [node name="FlatCollision1" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_2piql")
@@ -46,18 +58,17 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_2piql")
 
 [node name="RayLeft" type="RayCast2D" parent="."]
-position = Vector2(0, -15)
-target_position = Vector2(-18, 0)
+position = Vector2(-6, 0)
+target_position = Vector2(-3, 0)
 
 [node name="RayRight" type="RayCast2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(6, 0)
 rotation = 1.5708
-target_position = Vector2(-8.30516e-07, -19)
+target_position = Vector2(-1.09673e-05, -3)
 
-[node name="RayBottom" type="RayCast2D" parent="."]
-position = Vector2(-6, 5)
-rotation = 3.14159
-target_position = Vector2(1.01407e-05, -4)
+[node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
+collision_layer = 8
+collision_mask = 0
 
-[node name="EnemyComponent" type="Node2D" parent="."]
-script = ExtResource("3_ikbea")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_km7qs")

@@ -18,9 +18,7 @@ func _physics_process(delta):
 		global_position.y += gravity * delta
 	
 
-func _process(delta):
-	var x =1;
-		
+func _process(_delta):
 	if rayLeftTop.is_colliding() || rayLeftBottom.is_colliding():
 		enemyComponent.DIRECTION = 1;
 		sprite.flip_h = false;

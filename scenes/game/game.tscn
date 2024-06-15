@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy0x7sblihosr"]
+[gd_scene load_steps=11 format=3 uid="uid://cy0x7sblihosr"]
 
 [ext_resource type="Texture2D" uid="uid://bvy7cb0oge8r8" path="res://assets/world/tileset.png" id="1_rpecx"]
 [ext_resource type="PackedScene" uid="uid://dglqe06b31g4j" path="res://scenes/entity/player.tscn" id="1_v6h00"]
 [ext_resource type="PackedScene" uid="uid://bbj0t6omonxsw" path="res://scenes/entity/power_ups/power_up_leaf.tscn" id="3_u0h2x"]
+[ext_resource type="PackedScene" uid="uid://c18tkmt1gtv1r" path="res://scenes/entity/power_ups/power_up_metal.tscn" id="4_6nkid"]
 [ext_resource type="PackedScene" uid="uid://c358pow16yd0k" path="res://scenes/entity/enemies/enemy_big.tscn" id="4_xfn63"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qh07c"]
@@ -208,12 +209,18 @@ texture = ExtResource("1_rpecx")
 4:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_y2663"]
+resource_name = "Leaf"
 scenes/1/scene = ExtResource("3_u0h2x")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_2pkax"]
+resource_name = "Metal"
+scenes/1/scene = ExtResource("4_6nkid")
 
 [sub_resource type="TileSet" id="TileSet_hn2pm"]
 physics_layer_0/collision_layer = 3
 sources/0 = SubResource("TileSetAtlasSource_qh07c")
 sources/1 = SubResource("TileSetScenesCollectionSource_y2663")
+sources/2 = SubResource("TileSetScenesCollectionSource_2pkax")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8c5f3"]
 
@@ -223,30 +230,26 @@ sources/1 = SubResource("TileSetScenesCollectionSource_y2663")
 tile_set = SubResource("TileSet_hn2pm")
 format = 2
 layer_0/name = "Midground"
-layer_0/tile_data = PackedInt32Array(65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, -6, 0, 1, -7, 0, 1, -65543, 0, 0, -65544, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -393213, 0, 1, -393212, 0, 1, -458751, 0, 1, -458750, 0, 1, -8, 0, 1, 65530, 0, 1, 65529, 0, 1, 65528, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, -196601, 0, 8, -196600, 65536, 8, -196599, 131072, 8, -196598, 196608, 8, -196597, 262144, 8, -196596, 327680, 8, -196595, 393216, 8, 14, 0, 0, 65550, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 1, 131094, 0, 1, 131095, 0, 1, 65559, 0, 1, 23, 0, 1, -65513, 0, 1, -131049, 0, 0, -131048, 0, 0, -131047, 0, 0, -131046, 0, 0, -131045, 0, 0, 196610, 1, 65536, -262138, 1, 65536)
+layer_0/tile_data = PackedInt32Array(65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, -6, 0, 1, -7, 0, 1, -65543, 0, 0, -65544, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, -196605, 0, 1, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -393213, 0, 1, -393212, 0, 1, -458751, 0, 1, -458750, 0, 1, -8, 0, 1, 65530, 0, 1, 65529, 0, 1, 65528, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, -196601, 0, 8, -196600, 65536, 8, -196599, 131072, 8, -196598, 196608, 8, -196597, 262144, 8, -196596, 327680, 8, -196595, 393216, 8, 14, 0, 0, 65550, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 1, 131094, 0, 1, 131095, 0, 1, 65559, 0, 1, 23, 0, 1, -65513, 0, 1, -131049, 0, 0, -131048, 0, 0, -131047, 0, 0, -131046, 0, 0, -131045, 0, 0, -262138, 1, 65536, -131071, 196608, 2, -65535, 196608, 3, -196607, 1, 65536, -262133, 2, 65536)
 layer_1/name = "Detail"
 layer_1/tile_data = PackedInt32Array(-196604, 131072, 0, -196603, 131072, 0, -196605, 65536, 0, -196602, 196608, 0)
 layer_2/name = "Effect"
 layer_2/tile_data = PackedInt32Array()
 
-[node name="Leaf" parent="." instance=ExtResource("3_u0h2x")]
-position = Vector2(0, 5)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-72, 170)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_8c5f3")
-
 [node name="Enemy" parent="." instance=ExtResource("4_xfn63")]
 position = Vector2(328, 15)
 
-[node name="BigEnemy" parent="." instance=ExtResource("4_xfn63")]
-position = Vector2(223, -16)
-
 [node name="Player" parent="." instance=ExtResource("1_v6h00")]
-position = Vector2(199, -59)
+position = Vector2(73, -62)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_top = -300
 limit_bottom = 100
+
+[node name="Killzone" type="Area2D" parent="." groups=["damage_area"]]
+position = Vector2(-105, 75)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_8c5f3")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
 [ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/player/player.png" id="2_66pu1"]
 [ext_resource type="Shader" path="res://shaders/hit_shader.gdshader" id="2_426tb"]
-[ext_resource type="Script" path="res://scripts/entity/player/upgrade_manager.gd" id="4_84m61"]
+[ext_resource type="Script" path="res://scripts/entity/upgrade_manager.gd" id="3_1pgcn"]
 [ext_resource type="Script" path="res://scripts/entity/player/damage_manager.gd" id="4_rh6fi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vo0k"]
@@ -23,34 +23,19 @@ size = Vector2(14, 1.99997)
 size = Vector2(14, 2.00003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4of66"]
-size = Vector2(1, 14)
+size = Vector2(0, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u70kp"]
-size = Vector2(1, 14)
+size = Vector2(0, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3h2h"]
-size = Vector2(14, 1)
+size = Vector2(16, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhv1m"]
-size = Vector2(14, 1)
+size = Vector2(16, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oj7iv"]
 radius = 2.0
-
-[sub_resource type="Animation" id="Animation_3q5id"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_uv0k0"]
 resource_name = "take_damage"
@@ -68,6 +53,21 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_3q5id"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qy5di"]
 _data = {
 "RESET": SubResource("Animation_3q5id"),
@@ -83,7 +83,7 @@ material = SubResource("ShaderMaterial_7vo0k")
 texture = ExtResource("2_66pu1")
 
 [node name="PowerUp Manager" type="Node2D" parent="."]
-script = ExtResource("4_84m61")
+script = ExtResource("3_1pgcn")
 
 [node name="SpriteUp" type="Sprite2D" parent="PowerUp Manager"]
 
@@ -134,7 +134,7 @@ shape = SubResource("RectangleShape2D_cqvu5")
 script = ExtResource("4_rh6fi")
 
 [node name="LeftDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/LeftDamageArea"]
@@ -142,7 +142,7 @@ position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_4of66")
 
 [node name="RightDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
@@ -150,7 +150,7 @@ position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_u70kp")
 
 [node name="TopDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/TopDamageArea"]
@@ -158,7 +158,7 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_w3h2h")
 
 [node name="BottomDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/BottomDamageArea"]
