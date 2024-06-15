@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cryhhesjn2qvg"]
+
+[ext_resource type="Script" path="res://scripts/entity/enemies/the_wall.gd" id="1_h23ns"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8c5f3"]
+
+[node name="Killzone" type="Area2D" groups=["kill_area"]]
+position = Vector2(-105, 75)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_h23ns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_8c5f3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -527.0
+offset_top = -283.0
+offset_right = -3.0
+offset_bottom = 285.0
+color = Color(0.0980392, 0, 0, 1)

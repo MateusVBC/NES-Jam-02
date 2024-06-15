@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://wamsdl7o7l18"]
+
+[ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_gw1qq"]
+[ext_resource type="Texture2D" uid="uid://gegprnp8yiok" path="res://assets/player/ice_upgrade.png" id="2_fkm0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
+size = Vector2(14, 15.9999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8jg6"]
+size = Vector2(16, 13)
+
+[node name="Ice" type="Area2D" groups=["power_up"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_gw1qq")
+type = 5
+sprite = ExtResource("2_fkm0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.61996e-06, 0.999993)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_7lgjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fkm0b")
+
+[node name="StaticBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_e8jg6")
+one_way_collision = true

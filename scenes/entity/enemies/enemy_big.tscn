@@ -11,7 +11,7 @@ radius = 2.0
 size = Vector2(1, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2ir2"]
-size = Vector2(31, 31)
+size = Vector2(32, 32)
 
 [node name="BigEnemy" type="AnimatableBody2D"]
 script = ExtResource("1_rjibd")
@@ -94,5 +94,4 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_c2ir2")

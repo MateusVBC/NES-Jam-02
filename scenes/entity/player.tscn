@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dglqe06b31g4j"]
+[gd_scene load_steps=20 format=3 uid="uid://dglqe06b31g4j"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
 [ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/player/player.png" id="2_66pu1"]
 [ext_resource type="Shader" path="res://shaders/hit_shader.gdshader" id="2_426tb"]
+[ext_resource type="Texture2D" uid="uid://bik86lnd0iq1g" path="res://assets/player/player_hurt.png" id="3_kjqel"]
 [ext_resource type="Script" path="res://scripts/entity/player/upgrade_manager.gd" id="4_84m61"]
 [ext_resource type="Script" path="res://scripts/entity/player/damage_manager.gd" id="4_rh6fi"]
 
@@ -35,7 +36,7 @@ size = Vector2(14, 1)
 size = Vector2(14, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oj7iv"]
-radius = 2.0
+radius = 3.0
 
 [sub_resource type="Animation" id="Animation_3q5id"]
 length = 0.001
@@ -50,6 +51,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_66pu1")]
 }
 
 [sub_resource type="Animation" id="Animation_uv0k0"]
@@ -67,6 +80,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_kjqel"), ExtResource("2_66pu1")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qy5di"]
 _data = {
@@ -77,12 +102,15 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_r7ntd")
+power_ups = null
+coyote_time = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7vo0k")
 texture = ExtResource("2_66pu1")
 
 [node name="PowerUp Manager" type="Node2D" parent="."]
+visible = false
 script = ExtResource("4_84m61")
 
 [node name="SpriteUp" type="Sprite2D" parent="PowerUp Manager"]
@@ -97,6 +125,7 @@ rotation = 1.57079
 rotation = -1.5708
 
 [node name="Up" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+visible = false
 position = Vector2(0, -8)
 collision_layer = 0
 collision_mask = 2
@@ -105,6 +134,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_5kqxh")
 
 [node name="Down" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+visible = false
 position = Vector2(0, 8)
 collision_layer = 0
 collision_mask = 2
@@ -113,6 +143,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_n4806")
 
 [node name="Right" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+visible = false
 position = Vector2(8, 0)
 rotation = 1.57079
 collision_layer = 0
@@ -122,6 +153,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_mhowt")
 
 [node name="Left" type="Area2D" parent="PowerUp Manager" groups=["power_up"]]
+visible = false
 position = Vector2(-8, 0)
 rotation = 1.57079
 collision_layer = 0
@@ -131,6 +163,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_cqvu5")
 
 [node name="Damage Manager" type="Node2D" parent="."]
+visible = false
 script = ExtResource("4_rh6fi")
 
 [node name="LeftDamageArea" type="Area2D" parent="Damage Manager"]
@@ -168,19 +201,19 @@ shape = SubResource("RectangleShape2D_dhv1m")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CornerCollision1" type="CollisionShape2D" parent="."]
-position = Vector2(6, 6)
+position = Vector2(5, 5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision2" type="CollisionShape2D" parent="."]
-position = Vector2(-6, -6)
+position = Vector2(-5, -5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision3" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 6)
+position = Vector2(-5, 5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision4" type="CollisionShape2D" parent="."]
-position = Vector2(6, -6)
+position = Vector2(5, -5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
