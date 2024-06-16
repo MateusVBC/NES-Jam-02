@@ -6,16 +6,26 @@ signal player_death;
 enum SIDES {UP, RIGHT, DOWN, LEFT};
 enum DIRECTIONS {TOP, FRONT, BOTTOM, BACk};
 
-const SPEED = 150.0;#150
+const SPEED = 135.0;
 const JUMP_VELOCITY = -300.0;
 const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS;
+
+const HURT_1 = preload("res://assets/SFX/player/hurt_1.ogg")
+const HURT_2 = preload("res://assets/SFX/player/hurt_2.ogg")
+const HURT_3 = preload("res://assets/SFX/player/hurt_3.ogg")
+const HURT_4 = preload("res://assets/SFX/player/hurt_4.ogg")
+const HURT_5 = preload("res://assets/SFX/player/hurt_5.ogg")
 
 #region Variables
 
 #region Childs
-@onready var coyote_timer = $Timer
+@onready var coyote_timer: Timer = $CoyoteTimer
+@onready var fire_timer: Timer = $FireTimer
+
 @onready var power_up_manager = $"PowerUp Manager"
 @onready var damage_manager: Node2D = $"Damage Manager"
+@onready var hurt_sfx: AudioStreamPlayer = $HurtSFX
+
 #endregion
 
 #region Sides Stats
@@ -28,6 +38,7 @@ var is_dead = false;
 var speed_moment = SPEED;
 var speed_debuff = 0.0;
 var speed_buff = 0.0;
+var fire_time = 20;
 #endregion
 
 #region Gravity
@@ -39,6 +50,7 @@ var leaf_gravity = gravity / 6; #gravity / 4.5;
 @export var coyote_time := 0.1;
 var avaliable_jumps := 1;
 var did_jump := false;
+var jump_buff := 0;
 #endregion
 
 #region Spin Stats
@@ -72,6 +84,8 @@ func _physics_process(delta):
 	else:
 		if is_element_on_current_side(POWER_UPS.CLOUD, DIRECTIONS.BOTTOM):
 			avaliable_jumps = 2;
+		elif is_element_on_current_side(POWER_UPS.FIRE, DIRECTIONS.BOTTOM):
+			avaliable_jumps = 3;
 		else:
 			avaliable_jumps = 1;
 		coyote_timer.stop();
@@ -81,7 +95,7 @@ func _physics_process(delta):
 		if avaliable_jumps > 0:
 			did_jump = true;
 			avaliable_jumps -= 1;
-			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_VELOCITY + jump_buff;
 	
 	#Do rotate
 	if rotation_elapsed <= 1:
@@ -102,10 +116,18 @@ func _process(delta):
 		var touching_sides = power_up_manager.get_touching_sides();
 		for side in touching_sides:
 			if touching_sides[side] is PowerUp:
+				if touching_sides[side].type == POWER_UPS.FIRE:
+					power_ups[SIDES.UP] = touching_sides[side];
+					power_ups[SIDES.DOWN] = touching_sides[side];
+					power_ups[SIDES.LEFT] = touching_sides[side];
+					power_ups[SIDES.RIGHT] = touching_sides[side];
+					fire_timer.start(fire_time);
+					break;
 				power_ups[side] = touching_sides[side];
 		power_up_manager.refresh_sprites(self, power_ups);
 		_validate_speed();
-		damage_manager.refresh_hitbox(power_ups);
+		if damage_manager != null:
+			damage_manager.refresh_hitbox(power_ups);
 	
 	if is_dead:
 		create_tween().tween_property(Engine, "time_scale", 0.1, delta * 100);
@@ -116,6 +138,8 @@ func take_damage(side):
 		health_sides[side] -= 1;
 		$AnimationPlayer.play("take_damage");
 		if health_sides[side] == 0:
+			hurt_sfx.stream = get("HURT_"+str(randi_range(1, 5)));
+			hurt_sfx.play()
 			power_ups[side] = false;
 			_validate_speed();
 			power_up_manager.refresh_sprites(self, power_ups);
@@ -131,7 +155,11 @@ func die():
 	$CornerCollision2.queue_free()
 	$CornerCollision3.queue_free()
 	$CornerCollision4.queue_free()
-	$"Damage Manager".queue_free()
+	$SideCollision1.queue_free()
+	$SideCollision2.queue_free()
+	$SideCollision3.queue_free()
+	$SideCollision4.queue_free()
+	damage_manager.queue_free()
 	get_tree().create_tween().tween_property(self, "rotation", 360, 10);
 	await get_tree().create_timer(0.5).timeout
 	emit_signal("player_death");
@@ -142,6 +170,10 @@ func _validate_speed():
 	if is_element_on_current_side(POWER_UPS.ICE, DIRECTIONS.BOTTOM):
 		speed_moment = SPEED / 100;
 		speed_buff = 50;
+	elif is_element_on_current_side(POWER_UPS.FIRE, DIRECTIONS.BOTTOM):
+		speed_moment = SPEED;
+		speed_buff = 100;
+		jump_buff = -150
 	else:
 		speed_moment = SPEED;
 		speed_buff = 0;
@@ -208,3 +240,13 @@ func count_elements(power_up: int):
 func _coyote_timeout():
 	if !did_jump:
 		avaliable_jumps -= 1;
+
+func _on_fire_timer_timeout() -> void:
+	power_ups[SIDES.UP] = false;
+	power_ups[SIDES.DOWN] = false;
+	power_ups[SIDES.LEFT] = false;
+	power_ups[SIDES.RIGHT] = false;
+	power_up_manager.refresh_sprites(self, power_ups);
+	_validate_speed();
+	if damage_manager != null:
+		damage_manager.refresh_hitbox(power_ups);

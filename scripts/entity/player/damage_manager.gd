@@ -21,6 +21,8 @@ func _process_damage(side, area):
 			POWER_UPS.SPIKES:
 				if area.get_parent().is_in_group("enemy"):
 					area.get_parent().take_damage(spike_damage);
+				else:
+					return;
 			POWER_UPS.METAL:
 				if player.is_side_on_current_direction(side, player.SIDES.DOWN):
 					if player.count_elements(POWER_UPS.METAL) < 2:
@@ -29,6 +31,8 @@ func _process_damage(side, area):
 					else:
 						landing_sfx.stream = LANDING_ENEMY_HEAVY;
 						landing_sfx.play();
+					if !area.get_parent().is_in_group("enemy"):
+						player.take_damage(side);
 					return;
 			POWER_UPS.FIRE:
 				if area.get_parent().is_in_group("enemy"):
@@ -39,7 +43,7 @@ func _process_damage(side, area):
 func refresh_hitbox(power_ups):
 	for side in power_ups:
 		if power_ups[side] is PowerUp:
-			get("spike_collision_"+str(side)).disabled = power_ups[side].type != POWER_UPS.SPIKES;
+			get("spike_collision_"+str(side)).disabled = power_ups[side].type != POWER_UPS.SPIKES && power_ups[side].type != POWER_UPS.FIRE;
 		else:
 			get("spike_collision_"+str(side)).disabled = true;
 	pass

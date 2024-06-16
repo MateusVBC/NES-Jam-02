@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dglqe06b31g4j"]
+[gd_scene load_steps=23 format=3 uid="uid://dglqe06b31g4j"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
 [ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/sprites/player/player.png" id="2_66pu1"]
@@ -38,6 +38,9 @@ size = Vector2(14, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhv1m"]
 size = Vector2(14, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ancf"]
+size = Vector2(8, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oj7iv"]
 radius = 3.0
@@ -110,6 +113,9 @@ script = ExtResource("1_r7ntd")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7vo0k")
 texture = ExtResource("2_66pu1")
+
+[node name="HurtSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="PowerUp Manager" type="Node2D" parent="."]
 script = ExtResource("4_84m61")
@@ -224,25 +230,41 @@ disabled = true
 stream = ExtResource("6_tlkeg")
 volume_db = 1.5
 
-[node name="Timer" type="Timer" parent="."]
+[node name="FireTimer" type="Timer" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="SideCollision1" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_0ancf")
+
+[node name="SideCollision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_0ancf")
+
+[node name="SideCollision3" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_0ancf")
+
+[node name="SideCollision4" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_0ancf")
 
 [node name="CornerCollision1" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(5, 5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision2" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-5, -5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision3" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-5, 5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision4" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(5, -5)
 shape = SubResource("CircleShape2D_oj7iv")
 
@@ -263,4 +285,5 @@ libraries = {
 [connection signal="area_entered" from="Damage Manager/RightDamageArea" to="Damage Manager" method="_on_right_damage_area_area_entered"]
 [connection signal="area_entered" from="Damage Manager/TopDamageArea" to="Damage Manager" method="_on_top_damage_area_area_entered"]
 [connection signal="area_entered" from="Damage Manager/BottomDamageArea" to="Damage Manager" method="_on_bottom_damage_area_area_entered"]
-[connection signal="timeout" from="Timer" to="." method="_coyote_timeout"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_coyote_timeout"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgiauao48je6b"]
+[gd_scene load_steps=2 format=3 uid="uid://bgiauao48je6b"]
 
 [ext_resource type="Script" path="res://scripts/menus/game_over.gd" id="1_r11ay"]
-[ext_resource type="Texture2D" uid="uid://d6vqy6ce2eiv" path="res://assets/yellow32x32.png" id="2_i5fa1"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -30,12 +29,11 @@ layout_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_i5fa1")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+process_mode = 3
 visible = false
 position = Vector2(18, 15)
-texture = ExtResource("2_i5fa1")
 
 [node name="Retry" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

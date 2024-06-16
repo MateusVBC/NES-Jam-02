@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt583525b24et"]
+[gd_scene load_steps=6 format=3 uid="uid://bt583525b24et"]
 
 [ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_e23jr"]
 [ext_resource type="Texture2D" uid="uid://d4b8vchc0khcs" path="res://assets/sprites/player/metal_upgrade.png" id="2_tr4iy"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
 size = Vector2(15, 15.9999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vunqx"]
+size = Vector2(16, 14)
 
 [node name="Metal" type="Area2D" groups=["power_up"]]
 collision_layer = 2
@@ -24,5 +27,6 @@ shape = SubResource("RectangleShape2D_7lgjf")
 
 [node name="StaticBody2D" type="AnimatableBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-8, 8, 8, 8, 8, -6, -4, -6, -8, -8)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vunqx")

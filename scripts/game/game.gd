@@ -16,8 +16,10 @@ const DAMAGE_5 = preload("res://assets/SFX/enemy/damage_5.ogg")
 
 
 func _ready():
+	music_player.play();
 	player.connect("player_death", _game_over);
 	Engine.time_scale = 1;
+	get_tree().paused = false;
 
 func _process(_data):
 	if Input.is_action_just_pressed("pause"):
@@ -41,7 +43,10 @@ func create_gui(gui):
 	actual_camera.limit_top = player_camera.limit_top
 	actual_camera.limit_bottom = player_camera.limit_bottom
 	gui.global_position = actual_camera.global_position;
-	gui.global_position.y = clampf(actual_camera.global_position.y, actual_camera.limit_top - get_viewport_rect().size.y / 2, actual_camera.limit_bottom - get_viewport_rect().size.y / 2);
+	gui.global_position.y = clampf(actual_camera.global_position.y,
+	 actual_camera.limit_top + get_viewport_rect().size.y / 2,
+	 actual_camera.limit_bottom - get_viewport_rect().size.y / 2
+	);
 	
 	add_child(gui);
 	add_child(actual_camera);

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy7ajvt8v2ubw"]
+
+[ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_fq1u6"]
+[ext_resource type="Texture2D" uid="uid://bbb63o66epmnp" path="res://assets/sprites/player/fire_upgrade.png" id="2_78iev"]
+[ext_resource type="Texture2D" uid="uid://coqoowrlfui7u" path="res://assets/sprites/world/Power_ups/fire_upgrade.png" id="3_b110e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
+size = Vector2(17, 15.9999)
+
+[node name="Fire" type="Area2D" groups=["power_up"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_fq1u6")
+type = 6
+sprite = ExtResource("2_78iev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.81001e-06, -0.500002)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_7lgjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_b110e")

@@ -1,25 +1,42 @@
-[gd_scene load_steps=30 format=3 uid="uid://cy0x7sblihosr"]
+[gd_scene load_steps=49 format=3 uid="uid://cy0x7sblihosr"]
 
 [ext_resource type="Texture2D" uid="uid://bvy7cb0oge8r8" path="res://assets/sprites/world/tileset.png" id="1_rpecx"]
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_tcd1y"]
 [ext_resource type="PackedScene" uid="uid://dglqe06b31g4j" path="res://scenes/entity/player.tscn" id="1_v6h00"]
 [ext_resource type="PackedScene" uid="uid://bbj0t6omonxsw" path="res://scenes/entity/power_ups/leaf.tscn" id="3_u0h2x"]
-[ext_resource type="PackedScene" uid="uid://wamsdl7o7l18" path="res://scenes/entity/power_ups/power_up_ice.tscn" id="4_w1ik7"]
 [ext_resource type="PackedScene" uid="uid://c358pow16yd0k" path="res://scenes/entity/enemies/square_big.tscn" id="4_xfn63"]
-[ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="6_bvqxq"]
 [ext_resource type="PackedScene" uid="uid://cryhhesjn2qvg" path="res://scenes/entity/enemies/the_wall.tscn" id="6_kyqdb"]
 [ext_resource type="PackedScene" uid="uid://cis1iugotrnkx" path="res://scenes/entity/power_ups/spike/spike_middle.tscn" id="6_u0j2v"]
 [ext_resource type="PackedScene" uid="uid://d5xp171y5cyp" path="res://scenes/entity/power_ups/metal/rd_pipe_1.tscn" id="7_7nqyk"]
-[ext_resource type="Texture2D" uid="uid://cias1x0oc4m56" path="res://assets/sprites/player/cloud_upgrade.png" id="7_agien"]
 [ext_resource type="PackedScene" uid="uid://dnunbtid6peeg" path="res://scenes/entity/enemies/square_small.tscn" id="8_6kq6w"]
+[ext_resource type="PackedScene" uid="uid://ho477hvec6sy" path="res://scenes/entity/power_ups/metal/grn_pipe_1.tscn" id="8_ut884"]
+[ext_resource type="PackedScene" uid="uid://bt583525b24et" path="res://scenes/entity/power_ups/metal/rd_pipe_4.tscn" id="9_ciqco"]
 [ext_resource type="PackedScene" uid="uid://c0oylgoqw2dnu" path="res://scenes/entity/enemies/triangle_big.tscn" id="10_avhtw"]
+[ext_resource type="PackedScene" uid="uid://bm30rlgjyflgu" path="res://scenes/entity/power_ups/metal/rd_pipe_5.tscn" id="10_fc2xp"]
+[ext_resource type="PackedScene" uid="uid://bv3h0xnli2gmc" path="res://scenes/entity/power_ups/metal/rd_pipe_6.tscn" id="11_5exxr"]
 [ext_resource type="PackedScene" uid="uid://c54g2dafcysbp" path="res://scenes/entity/enemies/triangle_small.tscn" id="11_uurmu"]
+[ext_resource type="PackedScene" uid="uid://breusj8legyho" path="res://scenes/entity/power_ups/metal/grn_pipe_2.tscn" id="12_cw32b"]
 [ext_resource type="PackedScene" uid="uid://cef83e6r1ak8c" path="res://scenes/entity/enemies/ball_small.tscn" id="12_tn4o0"]
+[ext_resource type="PackedScene" uid="uid://cqbkvbcr4qtjw" path="res://scenes/entity/power_ups/metal/grn_pipe_3.tscn" id="13_n8ltg"]
 [ext_resource type="PackedScene" uid="uid://baadkbbgfb46e" path="res://scenes/entity/enemies/ball_big.tscn" id="13_rkmjo"]
+[ext_resource type="PackedScene" uid="uid://cf733cewd70hp" path="res://scenes/entity/power_ups/metal/grn_pipe_4.tscn" id="14_77si1"]
 [ext_resource type="PackedScene" uid="uid://dctnxd5nw587r" path="res://scenes/entity/enemies/ball_small_spike.tscn" id="14_yalp3"]
+[ext_resource type="PackedScene" uid="uid://r8esr0mo2pxa" path="res://scenes/entity/power_ups/metal/grn_pipe_5.tscn" id="15_ud3og"]
 [ext_resource type="PackedScene" uid="uid://b8mnhdm2126pp" path="res://scenes/entity/enemies/ball_big_spike.tscn" id="15_wqbev"]
 [ext_resource type="PackedScene" uid="uid://bikrm0u1r24bu" path="res://scenes/entity/enemies/spike.tscn" id="16_gy64g"]
+[ext_resource type="PackedScene" uid="uid://6gvxx4yibb76" path="res://scenes/entity/power_ups/metal/grn_pipe_6.tscn" id="16_ipofi"]
+[ext_resource type="PackedScene" uid="uid://c2fhssofc0io1" path="res://scenes/entity/power_ups/metal/rd_pipe_2.tscn" id="17_no0e4"]
+[ext_resource type="PackedScene" uid="uid://dyuuayjnfmurn" path="res://scenes/entity/power_ups/metal/rd_pipe_3.tscn" id="18_l1kbc"]
 [ext_resource type="AudioStream" uid="uid://bla0or5cdink8" path="res://assets/SFX/UI/music no fade-out.mp3" id="20_carmi"]
+[ext_resource type="PackedScene" uid="uid://ceq84y5wc7155" path="res://scenes/entity/power_ups/ice/ice_1.tscn" id="30_1ijv3"]
+[ext_resource type="PackedScene" uid="uid://nqyk2fc80tok" path="res://scenes/entity/power_ups/cloud/cloud_3.tscn" id="30_e5vat"]
+[ext_resource type="PackedScene" uid="uid://iud7f6ixmr8u" path="res://scenes/entity/power_ups/spike/spike_bottom.tscn" id="30_vfpiu"]
+[ext_resource type="PackedScene" uid="uid://bhn4uoov6otqm" path="res://scenes/entity/power_ups/cloud/cloud_4.tscn" id="31_6e6qj"]
+[ext_resource type="PackedScene" uid="uid://cea1v67wgj1rg" path="res://scenes/entity/power_ups/ice/ice_2.tscn" id="31_mv4pd"]
+[ext_resource type="PackedScene" uid="uid://nqyk2fc80tok" path="res://scenes/entity/power_ups/ice/ice_3.tscn" id="32_3iksm"]
+[ext_resource type="PackedScene" uid="uid://dy7ajvt8v2ubw" path="res://scenes/entity/power_ups/fire/fire.tscn" id="32_kw16b"]
+[ext_resource type="PackedScene" uid="uid://ceq84y5wc7155" path="res://scenes/entity/power_ups/cloud/cloud_1.tscn" id="32_vg3y8"]
+[ext_resource type="PackedScene" uid="uid://cea1v67wgj1rg" path="res://scenes/entity/power_ups/cloud/cloud_2.tscn" id="33_7iq3a"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ysilj"]
 tile_data = PackedInt32Array(131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 196613, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 14, 0, 0, 65550, 0, 1, 131086, 0, 1, 196622, 0, 1, 262158, 0, 1)
@@ -244,32 +261,20 @@ texture = ExtResource("1_rpecx")
 8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
-size = Vector2(14, 15.9999)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8jg6"]
-size = Vector2(16, 13)
-
-[sub_resource type="PackedScene" id="PackedScene_36s6s"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("Spike", "collision_layer", "collision_mask", "script", "type", "sprite", "power_up", "Area2D", "CollisionShape2D", "position", "rotation", "shape", "Sprite2D", "texture", "StaticBody2D", "AnimatableBody2D", "one_way_collision"),
-"node_count": 5,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 7, 0, -1, 5, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 1, 6, 0, 0, 8, 8, -1, 3, 9, 5, 10, 6, 11, 7, 0, 0, 0, 12, 12, -1, 1, 13, 4, 0, 0, 0, 15, 14, -1, 0, 0, 3, 0, 8, 8, -1, 3, 9, 8, 11, 9, 16, 10, 0),
-"variants": [2, 0, ExtResource("6_bvqxq"), 1, ExtResource("7_agien"), Vector2(3.61996e-06, 0.999993), -1.5708, SubResource("RectangleShape2D_7lgjf"), Vector2(0, 1.5), SubResource("RectangleShape2D_e8jg6"), true],
-"version": 3
-}
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_y2663"]
-resource_name = "PowerUps"
-scenes/1/scene = ExtResource("3_u0h2x")
-scenes/2/scene = ExtResource("4_w1ik7")
-scenes/4/scene = ExtResource("6_u0j2v")
-scenes/5/scene = SubResource("PackedScene_36s6s")
-scenes/6/scene = ExtResource("7_7nqyk")
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_clxs8"]
+resource_name = "Metal"
+scenes/1/scene = ExtResource("8_ut884")
+scenes/2/scene = ExtResource("12_cw32b")
+scenes/3/scene = ExtResource("13_n8ltg")
+scenes/4/scene = ExtResource("14_77si1")
+scenes/5/scene = ExtResource("15_ud3og")
+scenes/6/scene = ExtResource("16_ipofi")
+scenes/7/scene = ExtResource("7_7nqyk")
+scenes/8/scene = ExtResource("17_no0e4")
+scenes/9/scene = ExtResource("18_l1kbc")
+scenes/10/scene = ExtResource("9_ciqco")
+scenes/11/scene = ExtResource("10_fc2xp")
+scenes/12/scene = ExtResource("11_5exxr")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_pe7sd"]
 resource_name = "Enemies"
@@ -281,13 +286,44 @@ scenes/5/scene = ExtResource("12_tn4o0")
 scenes/6/scene = ExtResource("13_rkmjo")
 scenes/7/scene = ExtResource("14_yalp3")
 scenes/8/scene = ExtResource("15_wqbev")
-scenes/9/scene = ExtResource("16_gy64g")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_eqmjy"]
+resource_name = "Cloud"
+scenes/5/scene = ExtResource("32_vg3y8")
+scenes/6/scene = ExtResource("33_7iq3a")
+scenes/7/scene = ExtResource("30_e5vat")
+scenes/8/scene = ExtResource("31_6e6qj")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5dc04"]
+resource_name = "Leaf"
+scenes/1/scene = ExtResource("3_u0h2x")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jw7he"]
+resource_name = "Fire"
+scenes/1/scene = ExtResource("32_kw16b")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1eudm"]
+resource_name = "Ice"
+scenes/1/scene = ExtResource("30_1ijv3")
+scenes/2/scene = ExtResource("31_mv4pd")
+scenes/3/scene = ExtResource("32_3iksm")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_w782w"]
+resource_name = "Spike"
+scenes/1/scene = ExtResource("30_vfpiu")
+scenes/2/scene = ExtResource("6_u0j2v")
+scenes/3/scene = ExtResource("16_gy64g")
 
 [sub_resource type="TileSet" id="TileSet_hn2pm"]
 physics_layer_0/collision_layer = 3
 sources/0 = SubResource("TileSetAtlasSource_qh07c")
-sources/1 = SubResource("TileSetScenesCollectionSource_y2663")
 sources/3 = SubResource("TileSetScenesCollectionSource_pe7sd")
+sources/2 = SubResource("TileSetScenesCollectionSource_clxs8")
+sources/4 = SubResource("TileSetScenesCollectionSource_eqmjy")
+sources/5 = SubResource("TileSetScenesCollectionSource_5dc04")
+sources/6 = SubResource("TileSetScenesCollectionSource_jw7he")
+sources/7 = SubResource("TileSetScenesCollectionSource_1eudm")
+sources/8 = SubResource("TileSetScenesCollectionSource_w782w")
 pattern_0 = SubResource("TileMapPattern_ysilj")
 pattern_1 = SubResource("TileMapPattern_mj6to")
 
@@ -297,25 +333,24 @@ script = ExtResource("1_tcd1y")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("20_carmi")
-autoplay = true
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("20_carmi")
-autoplay = true
+bus = &"SFX"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hn2pm")
 format = 2
 layer_0/name = "Midground"
-layer_0/tile_data = PackedInt32Array(65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, -6, 0, 1, -7, 0, 1, -65543, 0, 0, -65544, 0, 0, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, -8, 0, 1, 65530, 0, 1, 65529, 0, 1, 65528, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, -131048, 0, 0, -131047, 0, 0, -131046, 0, 0, -131045, 0, 0, -65535, 196608, 3, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 65550, 0, 1, 131086, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 1, 131094, 0, 1, -131049, 0, 0, -65513, 0, 1, 23, 0, 1, 65559, 0, 1, 131095, 0, 1, -131044, 0, 0, -131043, 0, 0, -131042, 0, 0, -131041, 0, 0, -131040, 0, 0, -131039, 0, 0, -65503, 0, 1, 33, 0, 1, 34, 0, 1, 35, 0, 1, 36, 0, 1, 37, 0, 1, 38, 0, 1, 39, 0, 1, 40, 0, 1, 41, 0, 1, -262102, 0, 0, -196566, 0, 1, -131030, 0, 1, -65494, 0, 1, 42, 0, 1, -458751, 0, 1, -196607, 1, 65536, -131071, 196608, 2, -458750, 0, 1, -393213, 0, 1, -196605, 0, 1, -393212, 0, 1, -196604, 0, 1, -196603, 0, 1, -262138, 1, 65536, -196602, 0, 1, -196600, 65536, 8, -196599, 131072, 8, -196598, 196608, 8, -262133, 1, 196608, -196597, 262144, 8, -196596, 327680, 8, -196595, 393216, 8, -262135, 1, 131072, -65526, 1, 262144, -262131, 1, 327680, -589801, 0, 0, -589800, 0, 0, -589799, 0, 0, -589798, 0, 0, -589797, 0, 0, -589796, 0, 0, -589795, 0, 0, -589794, 0, 0, -589793, 0, 0, -589792, 0, 0, -589791, 0, 0, -327652, 3, 196608, -327649, 3, 262144, 21, 3, 327680, 131087, 262144, 0, -65518, 3, 393216, -131033, 3, 524288, 196614, 3, 589824, 196615, 3, 589824, 196616, 3, 589824, 196617, 3, 589824, -196601, 1, 393216)
+layer_0/tile_data = PackedInt32Array(-196612, 262144, 0, -196611, 262144, 0, -196610, 262144, 0, -196609, 262144, 0, -131076, 0, 1, -65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068, 0, 1, 196604, 0, 1, 262140, 0, 1, 327676, 0, 1, 393212, 0, 1, 458748, 0, 1, 524284, 0, 1, -131075, 0, 1, -65539, 0, 1, -3, 0, 1, 65533, 0, 1, 131069, 0, 1, 196605, 0, 1, 262141, 0, 1, 327677, 0, 1, 393213, 0, 1, 458749, 0, 1, 524285, 0, 1, -131074, 0, 1, -65538, 0, 1, -2, 0, 1, 65534, 0, 1, 131070, 0, 1, 196606, 0, 1, 262142, 0, 1, 327678, 0, 1, 393214, 0, 1, 458750, 0, 1, 524286, 0, 1, -131073, 0, 1, -65537, 0, 1, -1, 0, 1, 65535, 0, 1, 131071, 0, 1, 196607, 0, 1, 262143, 0, 1, 327679, 0, 1, 393215, 0, 1, 458751, 0, 1, 524287, 0, 1, 196623, 0, 1, 262159, 0, 1, 327695, 0, 1, 393231, 0, 1, 458767, 0, 1, 196624, 0, 1, 262160, 0, 1, 327696, 0, 1, 393232, 0, 1, 458768, 0, 1, 327697, 0, 1, 393233, 0, 1, 458769, 0, 1, 393234, 0, 1, 458770, 0, 1, 393235, 0, 1, 458771, 0, 1, 393236, 0, 1, 458772, 0, 1, 393237, 0, 1, 458773, 0, 1, 393238, 0, 1, 458774, 0, 1, 393239, 0, 1, 458775, 0, 1, 393240, 0, 1, 458776, 0, 1, 393241, 0, 1, 458777, 0, 1, 393242, 0, 1, 458778, 0, 1, 393243, 0, 7, 458779, 0, 1, 393244, 65536, 7, 458780, 0, 1, 393245, 131072, 7, 458781, 0, 7, 393246, 196608, 7, 458782, 65536, 7, 393247, 131072, 6, 458783, 131072, 7, 393248, 196608, 6, 458784, 196608, 7, 393249, 0, 7, 458785, 0, 1, 393250, 65536, 7, 458786, 0, 1, 393251, 131072, 7, 458787, 0, 1, 393252, 196608, 7, 458788, 0, 1, 327717, 0, 1, 393253, 0, 1, 458789, 0, 1, 327718, 0, 1, -196593, 262144, 0, -131057, 0, 1, -65521, 0, 1, 15, 0, 1, 65551, 0, 1, 131087, 0, 1, -196592, 262144, 0, -131056, 0, 1, -65520, 0, 1, 16, 0, 1, 65552, 0, 1, 131088, 0, 1, -65519, 3, 131072, 17, 0, 1, 65553, 0, 1, 131089, 0, 1, 196625, 0, 1, 262161, 0, 1, 18, 0, 1, 65554, 0, 1, 131090, 0, 1, 196626, 0, 1, 262162, 0, 1, 327698, 0, 1, 19, 0, 1, 65555, 0, 1, 131091, 0, 1, 196627, 0, 1, 262163, 0, 1, 327699, 0, 1, 20, 0, 1, 65556, 0, 1, 131092, 0, 1, 196628, 0, 1, 262164, 0, 1, 327700, 0, 1, 21, 0, 1, 65557, 0, 1, 131093, 0, 1, 196629, 0, 1, 262165, 0, 1, 327701, 0, 1, 22, 0, 1, 65558, 0, 4, 131094, 0, 5, 196630, 0, 6, 262166, 0, 7, 327702, 0, 1, 23, 0, 1, 65559, 65536, 4, 131095, 65536, 5, 196631, 65536, 6, 262167, 65536, 7, 327703, 0, 7, 24, 0, 1, 65560, 131072, 4, 131096, 131072, 5, 196632, 131072, 6, 262168, 131072, 7, 327704, 65536, 7, 25, 0, 1, 65561, 196608, 4, 131097, 196608, 5, 196633, 196608, 6, 262169, 196608, 7, 327705, 131072, 7, 26, 0, 1, 65562, 0, 1, 131098, 196608, 4, 196634, 196608, 5, 262170, 196608, 6, 327706, 196608, 7, 27, 0, 1, 65563, 0, 1, 131099, 0, 1, 196635, 0, 4, 262171, 0, 5, 327707, 0, 6, 28, 0, 1, 65564, 0, 1, 131100, 0, 1, 196636, 65536, 4, 262172, 65536, 5, 327708, 65536, 6, 29, 0, 1, 65565, 0, 4, 131101, 0, 5, 196637, 131072, 4, 262173, 131072, 5, 327709, 131072, 6, 30, 0, 1, 65566, 65536, 4, 131102, 65536, 5, 196638, 196608, 4, 262174, 196608, 5, 327710, 196608, 6, 31, 0, 1, 65567, 131072, 4, 131103, 131072, 5, 196639, 131072, 6, 262175, 131072, 4, 327711, 131072, 5, 32, 0, 1, 65568, 196608, 4, 131104, 196608, 5, 196640, 196608, 6, 262176, 196608, 4, 327712, 196608, 5, 33, 0, 1, 65569, 0, 1, 131105, 0, 1, 196641, 0, 4, 262177, 0, 5, 327713, 0, 6, 34, 0, 1, 65570, 0, 1, 131106, 0, 1, 196642, 65536, 4, 262178, 65536, 5, 327714, 65536, 6, 35, 0, 1, 65571, 0, 1, 131107, 0, 1, 196643, 131072, 4, 262179, 131072, 5, 327715, 131072, 6, 36, 0, 1, 65572, 0, 1, 131108, 131072, 4, 196644, 131072, 5, 262180, 196608, 5, 327716, 196608, 6, -65499, 3, 131072, 37, 0, 1, 65573, 131072, 4, 131109, 131072, 5, 196645, 196608, 5, 262181, 0, 1, -65498, 262144, 0, 38, 0, 1, 65574, 131072, 4, 131110, 131072, 5, 196646, 0, 1, 262182, 0, 1, -65497, 262144, 0, 39, 0, 1, 65575, 196608, 4, 131111, 196608, 5, 196647, 0, 1, 262183, 0, 1, -262118, 5, 65536, -262117, 5, 65536, -262141, 4, 327680, -262140, 4, 393216, -262139, 4, 458752, -262138, 4, 524288, 8, 4, 327680, 9, 4, 393216, 10, 4, 458752, 11, 4, 524288)
 layer_1/name = "Detail"
-layer_1/tile_data = PackedInt32Array(-196604, 131072, 0, -196603, 131072, 0, -196605, 65536, 0, -196602, 196608, 0)
+layer_1/tile_data = PackedInt32Array(-196612, 65536, 0, -196611, 131072, 0, -196610, 131072, 0, -196609, 196608, 0, -196593, 65536, 0, -196592, 196608, 0, 17, 131072, 0, 18, 131072, 0, 19, 131072, 0, 20, 131072, 0, 21, 131072, 0, 22, 131072, 0, 23, 131072, 0, 24, 131072, 0, 25, 131072, 0, 26, 131072, 0, 27, 131072, 0, 28, 131072, 0, 29, 131072, 0, 30, 131072, 0, 31, 131072, 0, 32, 131072, 0, 33, 131072, 0, 34, 131072, 0, 35, 131072, 0, 36, 131072, 0, 37, 131072, 0, -65498, 65536, 0, -65497, 196608, 0, -196581, 196608, 2, -131045, 196608, 2, -196582, 196608, 2, -131046, 196608, 2, -65510, 196608, 3, -65509, 196608, 3, 40, 2, 262144, 41, 2, 327680, 42, 2, 393216)
 layer_2/name = "Effect"
 layer_2/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("1_v6h00")]
-position = Vector2(154, -55)
+position = Vector2(-35, -76)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_top = -300
@@ -323,9 +358,17 @@ limit_bottom = 100
 
 [node name="Wall" parent="." instance=ExtResource("6_kyqdb")]
 position = Vector2(-393, -107)
+SPEED = 0.0
 
 [node name="Killzone" parent="." instance=ExtResource("6_kyqdb")]
 visible = false
 position = Vector2(96, 237)
 rotation = -1.57079
 script = null
+
+[node name="Label" type="Label" parent="."]
+offset_left = 45.0
+offset_top = -95.0
+offset_right = 85.0
+offset_bottom = -72.0
+text = "Try pressing "
