@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnog2l66ncx7y"
-path="res://.godot/imported/z_key.png-0edf68e9a2eb59a44e9c8db590061475.ctex"
+uid="uid://i2vvstdtsni2"
+path="res://.godot/imported/menu_star_buttont.png-2dfe564a4cc22cdc8ca6a5f234444945.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu/z_key.png"
-dest_files=["res://.godot/imported/z_key.png-0edf68e9a2eb59a44e9c8db590061475.ctex"]
+source_file="res://assets/sprites/menu/menu_star_buttont.png"
+dest_files=["res://.godot/imported/menu_star_buttont.png-2dfe564a4cc22cdc8ca6a5f234444945.ctex"]
 
 [params]
 

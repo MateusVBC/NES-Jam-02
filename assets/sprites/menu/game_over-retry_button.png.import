@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ma42sls4qbu"
-path="res://.godot/imported/down_arrow_key.png-6eac173ab9b86e2f2413a87103889409.ctex"
+uid="uid://b13ragglbc6pp"
+path="res://.godot/imported/game_over-retry_button.png-a552d09614f7e505ed09782cb0f1a1bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu/down_arrow_key.png"
-dest_files=["res://.godot/imported/down_arrow_key.png-6eac173ab9b86e2f2413a87103889409.ctex"]
+source_file="res://assets/sprites/menu/game_over-retry_button.png"
+dest_files=["res://.godot/imported/game_over-retry_button.png-a552d09614f7e505ed09782cb0f1a1bc.ctex"]
 
 [params]
 
