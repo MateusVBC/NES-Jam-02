@@ -14,12 +14,14 @@ func _process_damage(side, area):
 	if player.power_ups[side] is PowerUp:
 		match player.power_ups[side].type:
 			POWER_UPS.SPIKES:
-				area.get_parent().take_damage(spike_damage);
+				if area.get_parent().is_in_group("enemy"):
+					area.get_parent().take_damage(spike_damage);
 			POWER_UPS.METAL:
 				if player.is_side_on_current_direction(side, player.SIDES.DOWN):
 					return;
 			POWER_UPS.FIRE:
-				area.get_parent().die();
+				if area.get_parent().is_in_group("enemy"):
+					area.get_parent().die();
 				return;
 	player.take_damage(side);
 

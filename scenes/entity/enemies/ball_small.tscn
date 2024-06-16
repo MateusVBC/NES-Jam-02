@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cef83e6r1ak8c"]
+
+[ext_resource type="Script" path="res://scripts/entity/enemies/small_enemy.gd" id="1_n5hc3"]
+[ext_resource type="Script" path="res://scripts/entity/enemies/enemy_component.gd" id="2_ex8su"]
+[ext_resource type="Texture2D" uid="uid://enttl74jxv0s" path="res://assets/sprites/enemy/en_sphere_normal.png" id="3_8ov6j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6syv"]
+radius = 9.0
+
+[node name="SmallEnemy" type="RigidBody2D" groups=["enemy"]]
+script = ExtResource("1_n5hc3")
+
+[node name="EnemyComponent" type="Node2D" parent="."]
+script = ExtResource("2_ex8su")
+SPEED = Vector2(200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_8ov6j")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o6syv")
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, 0)
+target_position = Vector2(-6, 0)
+
+[node name="RayRight" type="RayCast2D" parent="."]
+position = Vector2(7, 0)
+rotation = 1.5708
+target_position = Vector2(-2.17199e-05, -6)
+
+[node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
+visible = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_o6syv")

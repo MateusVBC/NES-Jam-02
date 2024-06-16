@@ -10,9 +10,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") / 7
 
 func _physics_process(delta):
 	enemyComponent.move(delta);
-	#if !rayBottom.is_colliding():
-		#global_position.y += gravity * delta
-	
 
 func _process(_delta):
 	if rayLeft.is_colliding():

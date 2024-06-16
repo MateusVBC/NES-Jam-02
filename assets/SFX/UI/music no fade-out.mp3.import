@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bla0or5cdink8"
+path="res://.godot/imported/music no fade-out.mp3-1fb2aed8f9d50cb6db19c8acb0b4d86e.mp3str"
+
+[deps]
+
+source_file="res://assets/SFX/UI/music no fade-out.mp3"
+dest_files=["res://.godot/imported/music no fade-out.mp3-1fb2aed8f9d50cb6db19c8acb0b4d86e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

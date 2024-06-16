@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ojh01k3vus64"
+path="res://.godot/imported/music for loop.mp3-143e0e8d3404d6cc280d9d829fcb7813.mp3str"
+
+[deps]
+
+source_file="res://assets/SFX/UI/music for loop.mp3"
+dest_files=["res://.godot/imported/music for loop.mp3-143e0e8d3404d6cc280d9d829fcb7813.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
