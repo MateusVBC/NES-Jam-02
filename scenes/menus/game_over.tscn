@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d6vqy6ce2eiv" path="res://assets/yellow32x32.png" id="2_bqj6w"]
 
 [node name="Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

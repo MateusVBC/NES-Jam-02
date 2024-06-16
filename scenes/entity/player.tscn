@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dglqe06b31g4j"]
+[gd_scene load_steps=21 format=3 uid="uid://dglqe06b31g4j"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
-[ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/player/player.png" id="2_66pu1"]
+[ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/sprites/player/player.png" id="2_66pu1"]
 [ext_resource type="Shader" path="res://shaders/hit_shader.gdshader" id="2_426tb"]
-[ext_resource type="Texture2D" uid="uid://bik86lnd0iq1g" path="res://assets/player/player_hurt.png" id="3_kjqel"]
+[ext_resource type="Texture2D" uid="uid://bik86lnd0iq1g" path="res://assets/sprites/player/player_hurt.png" id="3_kjqel"]
 [ext_resource type="Script" path="res://scripts/entity/player/upgrade_manager.gd" id="4_84m61"]
 [ext_resource type="Script" path="res://scripts/entity/player/damage_manager.gd" id="4_rh6fi"]
 
@@ -25,6 +25,9 @@ size = Vector2(14, 2.00003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4of66"]
 size = Vector2(1, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcd2x"]
+size = Vector2(8, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u70kp"]
 size = Vector2(1, 14)
@@ -102,15 +105,12 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_r7ntd")
-power_ups = null
-coyote_time = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7vo0k")
 texture = ExtResource("2_66pu1")
 
 [node name="PowerUp Manager" type="Node2D" parent="."]
-visible = false
 script = ExtResource("4_84m61")
 
 [node name="SpriteUp" type="Sprite2D" parent="PowerUp Manager"]
@@ -163,7 +163,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_cqvu5")
 
 [node name="Damage Manager" type="Node2D" parent="."]
-visible = false
 script = ExtResource("4_rh6fi")
 
 [node name="LeftDamageArea" type="Area2D" parent="Damage Manager"]
@@ -174,6 +173,11 @@ collision_mask = 8
 position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_4of66")
 
+[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/LeftDamageArea"]
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_jcd2x")
+disabled = true
+
 [node name="RightDamageArea" type="Area2D" parent="Damage Manager"]
 collision_layer = 0
 collision_mask = 8
@@ -181,6 +185,11 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_u70kp")
+
+[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_jcd2x")
+disabled = true
 
 [node name="TopDamageArea" type="Area2D" parent="Damage Manager"]
 collision_layer = 0
@@ -190,6 +199,12 @@ collision_mask = 8
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_w3h2h")
 
+[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/TopDamageArea"]
+position = Vector2(0, -12)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_jcd2x")
+disabled = true
+
 [node name="BottomDamageArea" type="Area2D" parent="Damage Manager"]
 collision_layer = 0
 collision_mask = 8
@@ -198,21 +213,31 @@ collision_mask = 8
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_dhv1m")
 
+[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/BottomDamageArea"]
+position = Vector2(0, 12)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_jcd2x")
+disabled = true
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CornerCollision1" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(5, 5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision2" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-5, -5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision3" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-5, 5)
 shape = SubResource("CircleShape2D_oj7iv")
 
 [node name="CornerCollision4" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(5, -5)
 shape = SubResource("CircleShape2D_oj7iv")
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbj0t6omonxsw"]
 
 [ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_fq1u6"]
-[ext_resource type="Texture2D" path="res://assets/player/tree_upgrade.png" id="2_jq8cf"]
+[ext_resource type="Texture2D" uid="uid://bvpu53l2qnt7u" path="res://assets/sprites/world/Power_ups/tree_upgrade.png" id="2_qh2am"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
 size = Vector2(14, 15.9999)
@@ -20,7 +20,7 @@ rotation = -1.5708
 shape = SubResource("RectangleShape2D_7lgjf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_jq8cf")
+texture = ExtResource("2_qh2am")
 
 [node name="StaticBody2D" type="AnimatableBody2D" parent="."]
 

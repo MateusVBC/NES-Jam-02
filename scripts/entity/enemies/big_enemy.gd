@@ -26,5 +26,8 @@ func _process(_delta):
 		enemyComponent.DIRECTION = -1;
 		sprite.flip_h = true;
 
+func take_damage(damage):
+	enemyComponent.take_damage(damage);
+
 func die():
 	queue_free();

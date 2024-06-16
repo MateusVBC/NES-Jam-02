@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c18tkmt1gtv1r"]
 
 [ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_n2m06"]
-[ext_resource type="Texture2D" uid="uid://so528ckg1cg5" path="res://assets/player/metal_up.png" id="2_unttl"]
-[ext_resource type="Texture2D" uid="uid://d4b8vchc0khcs" path="res://assets/player/metal_upgrade.png" id="3_vmlot"]
+[ext_resource type="Texture2D" path="res://assets/player/metal_up.png" id="2_unttl"]
+[ext_resource type="Texture2D" uid="uid://d4b8vchc0khcs" path="res://assets/sprites/player/metal_upgrade.png" id="3_vmlot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
 size = Vector2(14, 15.9999)

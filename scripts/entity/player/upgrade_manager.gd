@@ -7,6 +7,7 @@ const SPIKE_HEALTH = 1;
 const METAL_HEALTH = 2;
 @export var collidingSides := {SIDES.UP: false, SIDES.DOWN: false, SIDES.RIGHT: false, SIDES.LEFT: false};;
 
+#region Collision var
 @onready var spUp = $SpriteUp
 @onready var spDown = $SpriteDown
 @onready var spRight = $SpriteRight
@@ -16,6 +17,7 @@ const METAL_HEALTH = 2;
 @onready var down = $Down
 @onready var right = $Right
 @onready var left = $Left
+#endregion
 
 func get_touching_sides():
 	return collidingSides;
@@ -28,6 +30,13 @@ func set_power_up(side, power_up: PowerUp, player: Player):
 				POWER_UPS.SPIKES:
 					player.health_sides[side] = SPIKE_HEALTH;
 
+func refresh_sprites(player, power_ups):
+	for side in power_ups:
+		if power_ups[side] is PowerUp:
+			set_power_up(side, power_ups[side], player);
+		else:
+			set_sprite_from_side(side, null);
+
 func set_sprite_from_side(side, sprite):
 	match side:
 		SIDES.UP:
@@ -38,11 +47,13 @@ func set_sprite_from_side(side, sprite):
 			spLeft.texture = sprite;
 		SIDES.RIGHT:
 			spRight.texture = sprite;
+			
+#region Collision connection
 
 #UP
 func _on_up_area_entered(area):
 	if area.is_in_group("power_up"):
-		collidingSides[SIDES.UP] = area.type;
+		collidingSides[SIDES.UP] = area;
 
 func _on_up_area_exited(area):
 	if area.is_in_group("power_up"):
@@ -60,7 +71,7 @@ func _on_down_area_exited(area):
 #LEFT
 func _on_right_area_entered(area):
 	if area.is_in_group("power_up"):
-		collidingSides[SIDES.RIGHT] = area.type;
+		collidingSides[SIDES.RIGHT] = area;
 
 func _on_right_area_exited(area):
 	if area.is_in_group("power_up"):
@@ -69,8 +80,9 @@ func _on_right_area_exited(area):
 #RIGHT
 func _on_left_area_entered(area):
 	if area.is_in_group("power_up"):
-		collidingSides[SIDES.LEFT] = area.type;
+		collidingSides[SIDES.LEFT] = area;
 
 func _on_left_area_exited(area):
 	if area.is_in_group("power_up"):
 		collidingSides[SIDES.LEFT] = false;
+#endregion
