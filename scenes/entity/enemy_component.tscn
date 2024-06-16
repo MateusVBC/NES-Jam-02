@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnvly2b2x1q6u"]
+
+[ext_resource type="Script" path="res://scripts/entity/enemies/enemy_component.gd" id="1_ypdwo"]
+
+[node name="EnemyComponent" type="Node2D"]
+script = ExtResource("1_ypdwo")
+SPEED = Vector2(0, -30)
+LIFE = 2

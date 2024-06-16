@@ -1,8 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://c358pow16yd0k"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/big_enemy.gd" id="1_rjibd"]
-[ext_resource type="Script" path="res://scripts/entity/enemies/enemy_component.gd" id="2_7ivv8"]
+[ext_resource type="PackedScene" uid="uid://bnvly2b2x1q6u" path="res://scenes/entity/enemy_component.tscn" id="2_05gkm"]
 [ext_resource type="Texture2D" uid="uid://dox8jbrp40w12" path="res://assets/sprites/enemy/en_square_big.png" id="3_8esie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2ir2"]
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61n70"]
 radius = 2.0
@@ -10,17 +13,18 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vqb04"]
 size = Vector2(1.5, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2ir2"]
-size = Vector2(32, 32)
-
 [node name="BigEnemy" type="AnimatableBody2D" groups=["enemy"]]
 script = ExtResource("1_rjibd")
 
-[node name="EnemyComponent" type="Node2D" parent="."]
-visible = false
-script = ExtResource("2_7ivv8")
+[node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_c2ir2")
+
+[node name="EnemyComponent" parent="." instance=ExtResource("2_05gkm")]
 SPEED = Vector2(50, 0)
-LIFE = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_8esie")
@@ -90,10 +94,3 @@ visible = false
 position = Vector2(9.04998e-07, -15.25)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_vqb04")
-
-[node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_c2ir2")

@@ -2,6 +2,9 @@ extends Node2D
 
 const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS
 
+const LANDING_ENEMY_HEAVY = preload("res://assets/SFX/player/landingEnemyHeavy.ogg")
+const LANDING_ENEMY_LIGHT = preload("res://assets/SFX/player/landingEnemyLight.ogg")
+
 @onready var player = $".."
 @export var spike_damage = 1;
 
@@ -9,6 +12,8 @@ const POWER_UPS = preload("res://scripts/resources/power_up_list.gd").POWER_UPS
 @onready var spike_collision_1: CollisionShape2D = $RightDamageArea/SpikeCollision
 @onready var spike_collision_2: CollisionShape2D = $BottomDamageArea/SpikeCollision
 @onready var spike_collision_3: CollisionShape2D = $LeftDamageArea/SpikeCollision
+
+@onready var landing_sfx: AudioStreamPlayer = $LandingSFX
 
 func _process_damage(side, area):
 	if player.power_ups[side] is PowerUp:
@@ -18,6 +23,12 @@ func _process_damage(side, area):
 					area.get_parent().take_damage(spike_damage);
 			POWER_UPS.METAL:
 				if player.is_side_on_current_direction(side, player.SIDES.DOWN):
+					if player.count_elements(POWER_UPS.METAL) < 2:
+						landing_sfx.stream = LANDING_ENEMY_LIGHT;
+						landing_sfx.play();
+					else:
+						landing_sfx.stream = LANDING_ENEMY_HEAVY;
+						landing_sfx.play();
 					return;
 			POWER_UPS.FIRE:
 				if area.get_parent().is_in_group("enemy"):

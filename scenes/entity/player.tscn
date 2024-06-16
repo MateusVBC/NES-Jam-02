@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dglqe06b31g4j"]
+[gd_scene load_steps=22 format=3 uid="uid://dglqe06b31g4j"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_r7ntd"]
 [ext_resource type="Texture2D" uid="uid://deqv5cx2gwe1n" path="res://assets/sprites/player/player.png" id="2_66pu1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bik86lnd0iq1g" path="res://assets/sprites/player/player_hurt.png" id="3_kjqel"]
 [ext_resource type="Script" path="res://scripts/entity/player/upgrade_manager.gd" id="4_84m61"]
 [ext_resource type="Script" path="res://scripts/entity/player/damage_manager.gd" id="4_rh6fi"]
+[ext_resource type="AudioStream" uid="uid://bstndh2l1epjp" path="res://assets/SFX/player/landingEnemyLight.ogg" id="6_tlkeg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vo0k"]
 shader = ExtResource("2_426tb")
@@ -218,6 +219,10 @@ position = Vector2(0, 12)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_jcd2x")
 disabled = true
+
+[node name="LandingSFX" type="AudioStreamPlayer" parent="Damage Manager"]
+stream = ExtResource("6_tlkeg")
+volume_db = 1.5
 
 [node name="Timer" type="Timer" parent="."]
 

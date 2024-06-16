@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy6b4s213gb12"]
+[gd_scene load_steps=2 format=3 uid="uid://cy6b4s213gb12"]
 
 [ext_resource type="Script" path="res://scripts/menus/control.gd" id="1_6y6nr"]
-[ext_resource type="Texture2D" uid="uid://d6vqy6ce2eiv" path="res://assets/yellow32x32.png" id="1_qxdwj"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -22,12 +21,9 @@ layout_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_qxdwj")
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
-visible = false
 position = Vector2(18, 15)
-texture = ExtResource("1_qxdwj")
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
