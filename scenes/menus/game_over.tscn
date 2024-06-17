@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpj7rfmx4vky5"]
+[gd_scene load_steps=3 format=3 uid="uid://dpj7rfmx4vky5"]
 
 [ext_resource type="Script" path="res://scripts/menus/game_over.gd" id="1_shj62"]
+[ext_resource type="AudioStream" uid="uid://cjx1gf23w1iit" path="res://assets/SFX/UI/select_007.ogg" id="2_sop4q"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -20,12 +21,12 @@ offset_bottom = 63.0
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Over!"
+
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
-visible = false
-position = Vector2(18, 15)
 
 [node name="Retry" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -36,6 +37,10 @@ text = "Retry!"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Retry")
 text = "Give Up..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sop4q")
+bus = &"SFX"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -1,13 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy6b4s213gb12"]
+[gd_scene load_steps=4 format=3 uid="uid://cy6b4s213gb12"]
 
 [ext_resource type="Script" path="res://scripts/menus/control.gd" id="1_6y6nr"]
+[ext_resource type="Texture2D" uid="uid://wlog7f8132o2" path="res://assets/sprites/menu/control_menu.png" id="2_junf7"]
+[ext_resource type="AudioStream" uid="uid://cjx1gf23w1iit" path="res://assets/SFX/UI/select_007.ogg" id="3_gc2j6"]
 
 [node name="Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_6y6nr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -120.0
+offset_right = 295.0
+offset_bottom = 264.0
+color = Color(0.864143, 0.742336, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -23,10 +34,15 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
-position = Vector2(18, 15)
+position = Vector2(23, -75)
+texture = ExtResource("2_junf7")
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gc2j6")
+bus = &"SFX"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
