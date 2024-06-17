@@ -55,11 +55,13 @@ LIFE = 1
 position = Vector2(9, 0)
 rotation = 3.14159
 target_position = Vector2(-3, 0)
+collision_mask = 3
 
 [node name="RayLeft" type="RayCast2D" parent="."]
 position = Vector2(-9, 0)
 rotation = 4.71239
 target_position = Vector2(-1.09673e-05, -3)
+collision_mask = 3
 
 [node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
 collision_layer = 8

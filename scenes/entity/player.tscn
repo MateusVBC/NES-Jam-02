@@ -8,6 +8,21 @@
 [ext_resource type="Script" path="res://scripts/entity/player/damage_manager.gd" id="4_rh6fi"]
 [ext_resource type="AudioStream" uid="uid://bstndh2l1epjp" path="res://assets/SFX/player/landingEnemyLight.ogg" id="6_tlkeg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcd2x"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4of66"]
+size = Vector2(1, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u70kp"]
+size = Vector2(1, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3h2h"]
+size = Vector2(14, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhv1m"]
+size = Vector2(14, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vo0k"]
 shader = ExtResource("2_426tb")
 shader_parameter/hit_opacity = 0.0
@@ -23,21 +38,6 @@ size = Vector2(14, 1.99997)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqvu5"]
 size = Vector2(14, 2.00003)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4of66"]
-size = Vector2(1, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcd2x"]
-size = Vector2(8, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u70kp"]
-size = Vector2(1, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3h2h"]
-size = Vector2(14, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhv1m"]
-size = Vector2(14, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ancf"]
 size = Vector2(8, 1)
@@ -110,6 +110,87 @@ _data = {
 collision_mask = 5
 script = ExtResource("1_r7ntd")
 
+[node name="Damage Manager" type="Node2D" parent="."]
+script = ExtResource("4_rh6fi")
+
+[node name="RightHurtArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Damage Manager/RightHurtArea"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_jcd2x")
+
+[node name="LeftHurtArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Damage Manager/LeftHurtArea"]
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_jcd2x")
+
+[node name="TopHurtArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Damage Manager/TopHurtArea"]
+position = Vector2(0, -12)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_jcd2x")
+
+[node name="BottomHurtArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Damage Manager/BottomHurtArea"]
+position = Vector2(0, 12)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_jcd2x")
+
+[node name="LeftDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/LeftDamageArea"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_4of66")
+
+[node name="RightDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_u70kp")
+
+[node name="TopDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/TopDamageArea"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_w3h2h")
+
+[node name="BottomDamageArea" type="Area2D" parent="Damage Manager"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/BottomDamageArea"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_dhv1m")
+
+[node name="LandingSFX" type="AudioStreamPlayer" parent="Damage Manager"]
+stream = ExtResource("6_tlkeg")
+volume_db = 1.5
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7vo0k")
 texture = ExtResource("2_66pu1")
@@ -169,67 +250,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp Manager/Left"]
 shape = SubResource("RectangleShape2D_cqvu5")
 
-[node name="Damage Manager" type="Node2D" parent="."]
-script = ExtResource("4_rh6fi")
-
-[node name="LeftDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/LeftDamageArea"]
-position = Vector2(-8, 0)
-shape = SubResource("RectangleShape2D_4of66")
-
-[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/LeftDamageArea"]
-position = Vector2(-12, 0)
-shape = SubResource("RectangleShape2D_jcd2x")
-disabled = true
-
-[node name="RightDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
-position = Vector2(8, 0)
-shape = SubResource("RectangleShape2D_u70kp")
-
-[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/RightDamageArea"]
-position = Vector2(12, 0)
-shape = SubResource("RectangleShape2D_jcd2x")
-disabled = true
-
-[node name="TopDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/TopDamageArea"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_w3h2h")
-
-[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/TopDamageArea"]
-position = Vector2(0, -12)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_jcd2x")
-disabled = true
-
-[node name="BottomDamageArea" type="Area2D" parent="Damage Manager"]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Manager/BottomDamageArea"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_dhv1m")
-
-[node name="SpikeCollision" type="CollisionShape2D" parent="Damage Manager/BottomDamageArea"]
-position = Vector2(0, 12)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_jcd2x")
-disabled = true
-
-[node name="LandingSFX" type="AudioStreamPlayer" parent="Damage Manager"]
-stream = ExtResource("6_tlkeg")
-volume_db = 1.5
-
 [node name="FireTimer" type="Timer" parent="."]
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -273,6 +293,14 @@ libraries = {
 "": SubResource("AnimationLibrary_qy5di")
 }
 
+[connection signal="area_entered" from="Damage Manager/RightHurtArea" to="Damage Manager" method="_on_right_hurt_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/LeftHurtArea" to="Damage Manager" method="_on_left_hurt_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/TopHurtArea" to="Damage Manager" method="_on_top_hurt_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/BottomHurtArea" to="Damage Manager" method="_on_bottom_hurt_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/LeftDamageArea" to="Damage Manager" method="_on_left_damage_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/RightDamageArea" to="Damage Manager" method="_on_right_damage_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/TopDamageArea" to="Damage Manager" method="_on_top_damage_area_area_entered"]
+[connection signal="area_entered" from="Damage Manager/BottomDamageArea" to="Damage Manager" method="_on_bottom_damage_area_area_entered"]
 [connection signal="area_entered" from="PowerUp Manager/Up" to="PowerUp Manager" method="_on_up_area_entered"]
 [connection signal="area_exited" from="PowerUp Manager/Up" to="PowerUp Manager" method="_on_up_area_exited"]
 [connection signal="area_entered" from="PowerUp Manager/Down" to="PowerUp Manager" method="_on_down_area_entered"]
@@ -281,9 +309,5 @@ libraries = {
 [connection signal="area_exited" from="PowerUp Manager/Right" to="PowerUp Manager" method="_on_right_area_exited"]
 [connection signal="area_entered" from="PowerUp Manager/Left" to="PowerUp Manager" method="_on_left_area_entered"]
 [connection signal="area_exited" from="PowerUp Manager/Left" to="PowerUp Manager" method="_on_left_area_exited"]
-[connection signal="area_entered" from="Damage Manager/LeftDamageArea" to="Damage Manager" method="_on_left_damage_area_area_entered"]
-[connection signal="area_entered" from="Damage Manager/RightDamageArea" to="Damage Manager" method="_on_right_damage_area_area_entered"]
-[connection signal="area_entered" from="Damage Manager/TopDamageArea" to="Damage Manager" method="_on_top_damage_area_area_entered"]
-[connection signal="area_entered" from="Damage Manager/BottomDamageArea" to="Damage Manager" method="_on_bottom_damage_area_area_entered"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_coyote_timeout"]

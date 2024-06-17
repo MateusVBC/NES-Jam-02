@@ -38,7 +38,7 @@ var is_dead = false;
 var speed_moment = SPEED;
 var speed_debuff = 0.0;
 var speed_buff = 0.0;
-var fire_time = 20;
+var fire_time = 999;
 #endregion
 
 #region Gravity
@@ -228,6 +228,16 @@ func is_side_on_current_direction(side, direction):
 	if side > 3:
 		side -= 4;
 	return direction == side;
+	
+func get_direction_side(side):
+	var side_tracking = tracking_rotation;
+	#não lida com negativos
+	if tracking_rotation < 0:
+		side_tracking += 4;
+	side += side_tracking;
+	if side > 3:
+		side -= 4;
+	return side;
 	
 func count_elements(power_up: int):
 	var qtt_element = 0;

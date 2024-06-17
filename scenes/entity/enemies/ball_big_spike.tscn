@@ -57,11 +57,13 @@ SPEED = Vector2(25, 0)
 position = Vector2(-14, 0)
 rotation = 4.71239
 target_position = Vector2(-2.8968e-06, -3)
+collision_mask = 3
 
 [node name="RayRight" type="RayCast2D" parent="."]
 position = Vector2(14, 0)
 rotation = -4.71239
 target_position = Vector2(3.57746e-08, -3)
+collision_mask = 3
 
 [node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
 collision_layer = 8

@@ -32,65 +32,62 @@ texture = ExtResource("3_8esie")
 [node name="RayLeft1" type="RayCast2D" parent="."]
 position = Vector2(0, -15)
 target_position = Vector2(-18, 0)
+collision_mask = 3
 
 [node name="RayLeft2" type="RayCast2D" parent="."]
 position = Vector2(1, 12)
 target_position = Vector2(-18, 0)
+collision_mask = 3
 
 [node name="RayRight1" type="RayCast2D" parent="."]
 position = Vector2(-1, -15)
 rotation = 1.5708
 target_position = Vector2(-8.30516e-07, -19)
+collision_mask = 3
 
 [node name="RayRight2" type="RayCast2D" parent="."]
 position = Vector2(-2, 12)
 rotation = 1.5708
 target_position = Vector2(-8.30516e-07, -19)
+collision_mask = 3
 
 [node name="RayBottom1" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(-14, -2)
 rotation = 3.14159
 target_position = Vector2(-8.30516e-07, -19)
+collision_mask = 3
 
 [node name="RayBottom2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(14, -2)
 rotation = 3.14159
 target_position = Vector2(-8.30516e-07, -19)
+collision_mask = 3
 
 [node name="CornerCollision1" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(14, 14)
 shape = SubResource("CircleShape2D_61n70")
 
 [node name="CornerCollision2" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-14, -14)
 shape = SubResource("CircleShape2D_61n70")
 
 [node name="CornerCollision3" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-14, 14)
 shape = SubResource("CircleShape2D_61n70")
 
 [node name="CornerCollision4" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(14, -14)
 shape = SubResource("CircleShape2D_61n70")
 
 [node name="FlatCollision1" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-15, 0)
 shape = SubResource("RectangleShape2D_vqb04")
 
 [node name="FlatCollision2" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(15, 0)
 shape = SubResource("RectangleShape2D_vqb04")
 
 [node name="FlatCollision3" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(9.04998e-07, -15.25)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_vqb04")

@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cias1x0oc4m56" path="res://assets/sprites/player/cloud_upgrade.png" id="2_ughml"]
 [ext_resource type="Texture2D" uid="uid://db8608fwjexd4" path="res://assets/sprites/world/Power_ups/cloud_upgrade2.png" id="3_7p0b1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lgjf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv26g"]
 size = Vector2(11, 15.9999)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8jg6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va4e3"]
 size = Vector2(16, 10)
 
 [node name="Cloud" type="Area2D" groups=["power_up"]]
@@ -23,11 +23,11 @@ texture = ExtResource("3_7p0b1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9.04996e-06, 2.5)
 rotation = -1.5708
-shape = SubResource("RectangleShape2D_7lgjf")
+shape = SubResource("RectangleShape2D_tv26g")
 
 [node name="StaticBody2D" type="AnimatableBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_e8jg6")
+shape = SubResource("RectangleShape2D_va4e3")
 one_way_collision = true

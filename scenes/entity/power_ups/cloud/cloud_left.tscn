@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ceq84y5wc7155"]
 
-[ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_c4myx"]
-[ext_resource type="Texture2D" uid="uid://cias1x0oc4m56" path="res://assets/sprites/player/cloud_upgrade.png" id="2_eu8fc"]
-[ext_resource type="Texture2D" uid="uid://csg6isvtgmdn" path="res://assets/sprites/world/Power_ups/cloud_upgrade1.png" id="3_wa7uu"]
+[ext_resource type="Script" path="res://scripts/entity/power_up.gd" id="1_m6oyt"]
+[ext_resource type="Texture2D" uid="uid://cias1x0oc4m56" path="res://assets/sprites/player/cloud_upgrade.png" id="2_h0yvb"]
+[ext_resource type="Texture2D" uid="uid://csg6isvtgmdn" path="res://assets/sprites/world/Power_ups/cloud_upgrade1.png" id="3_h24ex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7kg5"]
 size = Vector2(10.75, 15.9999)
@@ -13,12 +13,12 @@ size = Vector2(16, 10)
 [node name="Cloud" type="Area2D" groups=["power_up"]]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_c4myx")
+script = ExtResource("1_m6oyt")
 type = 1
-sprite = ExtResource("2_eu8fc")
+sprite = ExtResource("2_h0yvb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_wa7uu")
+texture = ExtResource("3_h24ex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8.59748e-06, 2.375)

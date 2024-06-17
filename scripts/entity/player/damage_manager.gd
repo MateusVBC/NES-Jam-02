@@ -8,10 +8,10 @@ const LANDING_ENEMY_LIGHT = preload("res://assets/SFX/player/landingEnemyLight.o
 @onready var player = $".."
 @export var spike_damage = 1;
 
-@onready var spike_collision_0: CollisionShape2D = $TopDamageArea/SpikeCollision
-@onready var spike_collision_1: CollisionShape2D = $RightDamageArea/SpikeCollision
-@onready var spike_collision_2: CollisionShape2D = $BottomDamageArea/SpikeCollision
-@onready var spike_collision_3: CollisionShape2D = $LeftDamageArea/SpikeCollision
+@onready var hurt_area_0: Area2D = $TopHurtArea
+@onready var hurt_area_1: Area2D = $RightHurtArea
+@onready var hurt_area_2: Area2D = $BottomHurtArea
+@onready var hurt_area_3: Area2D = $LeftHurtArea
 
 @onready var landing_sfx: AudioStreamPlayer = $LandingSFX
 
@@ -43,10 +43,10 @@ func _process_damage(side, area):
 func refresh_hitbox(power_ups):
 	for side in power_ups:
 		if power_ups[side] is PowerUp:
-			get("spike_collision_"+str(side)).disabled = power_ups[side].type != POWER_UPS.SPIKES && power_ups[side].type != POWER_UPS.FIRE;
+			var a = get("hurt_area_"+str(side));
+			get("hurt_area_"+str(side)).monitoring = power_ups[side].type == POWER_UPS.SPIKES || power_ups[side].type == POWER_UPS.FIRE;
 		else:
-			get("spike_collision_"+str(side)).disabled = true;
-	pass
+			get("hurt_area_"+str(side)).monitoring = false;
 
 #region Collision Connection
 func _on_left_damage_area_area_entered(area):
@@ -73,3 +73,27 @@ func _on_bottom_damage_area_area_entered(area):
 	elif area.is_in_group("kill_area"):
 		player.die();
 #endregion
+
+
+func _on_right_hurt_area_area_entered(area: Area2D) -> void:
+	if player.is_element_on_current_side(POWER_UPS.SPIKES, player.get_direction_side(player.SIDES.RIGHT)) || player.is_element_on_current_side(POWER_UPS.FIRE, player.get_direction_side(player.SIDES.RIGHT)):
+		if  area.is_in_group("damage_area"):
+			_process_damage(player.SIDES.RIGHT, area);
+
+
+func _on_left_hurt_area_area_entered(area: Area2D) -> void:
+	if player.is_element_on_current_side(POWER_UPS.SPIKES, player.get_direction_side(player.SIDES.LEFT)) || player.is_element_on_current_side(POWER_UPS.FIRE, player.get_direction_side(player.SIDES.LEFT)):
+		if  area.is_in_group("damage_area"):
+			_process_damage(player.SIDES.LEFT, area);
+
+
+func _on_top_hurt_area_area_entered(area: Area2D) -> void:
+	if player.is_element_on_current_side(POWER_UPS.SPIKES, player.get_direction_side(player.SIDES.UP)) || player.is_element_on_current_side(POWER_UPS.FIRE, player.get_direction_side(player.SIDES.UP)):
+		if  area.is_in_group("damage_area"):
+			_process_damage(player.SIDES.UP, area);
+
+
+func _on_bottom_hurt_area_area_entered(area: Area2D) -> void:
+	if player.is_element_on_current_side(POWER_UPS.SPIKES, player.get_direction_side(player.SIDES.DOWN)) || player.is_element_on_current_side(POWER_UPS.FIRE, player.get_direction_side(player.SIDES.DOWN)):
+		if  area.is_in_group("damage_area"):
+			_process_damage(player.SIDES.DOWN, area);

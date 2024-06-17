@@ -19,11 +19,13 @@ texture = ExtResource("3_vxmes")
 position = Vector2(0, -8)
 rotation = 1.5708
 target_position = Vector2(-3, 0)
+collision_mask = 3
 
 [node name="RayBottom" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
 rotation = 3.14159
 target_position = Vector2(-1.09673e-05, -3)
+collision_mask = 3
 
 [node name="Hitbox" type="Area2D" parent="." groups=["damage_area"]]
 visible = false
